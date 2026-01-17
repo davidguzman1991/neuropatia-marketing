@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-sand: 247 242 234;
+  --color-ink: 31 41 51;
+  --color-olive: 52 82 73;
+  --color-moss: 107 125 100;
+  --color-sun: 240 178 92;
+  --color-coral: 217 119 74;
+  --color-sky: 228 237 245;
+  --color-cloud: 255 255 255;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.page-bg {
+  background:
+    radial-gradient(900px circle at 10% 10%, #ffffff 0%, transparent 60%),
+    radial-gradient(700px circle at 90% 20%, #e4edf5 0%, transparent 55%),
+    linear-gradient(180deg, #f7f2ea 0%, #f7f2ea 100%);
+}
+
+@layer components {
+  .section {
+    @apply py-16 sm:py-20;
+  }
+}
