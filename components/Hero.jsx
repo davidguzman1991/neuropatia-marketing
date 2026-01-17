@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
-import { WHATSAPP_HREF } from "./WhatsAppButton";
+import WhatsAppLink from "./WhatsAppLink";
 
 export default function Hero() {
   return (
@@ -16,7 +16,7 @@ export default function Hero() {
             <h1 className="text-4xl font-semibold text-emerald-50 sm:text-5xl">
               Dolor, ardor u hormigueo en los pies no es normal.
             </h1>
-            <p className="text-lg text-emerald-50/80 sm:text-xl">
+            <p className="text-base text-emerald-50/80 sm:text-lg">
               Evaluamos neuropatía diabética con enfoque preventivo y acompañamiento
               clínico cercano. Si ya presentas molestias, una valoración temprana
               puede ayudarte a evitar complicaciones.
@@ -27,15 +27,14 @@ export default function Hero() {
                 className="rounded-full bg-emerald-400 text-emerald-950 shadow-soft hover:bg-emerald-300"
                 asChild
               >
-                <a
-                  href={WHATSAPP_HREF}
+                <WhatsAppLink
                   target="_blank"
                   rel="noreferrer"
                   data-analytics-event="whatsapp_click"
                   data-analytics-label="hero_cta"
                 >
                   Agendar por WhatsApp
-                </a>
+                </WhatsAppLink>
               </Button>
               <Button
                 size="lg"
@@ -62,12 +61,12 @@ export default function Hero() {
               width={900}
               height={1200}
               priority
-              className="rounded-2xl object-contain drop-shadow-sm max-h-[520px]"
+              className="h-[420px] w-full max-h-[520px] rounded-2xl object-cover drop-shadow-sm lg:h-[520px]"
             />
           </div>
           <div className="space-y-6 lg:col-span-2">
             <a href="#precios" className="block">
-              <Card className="border-emerald-100/80 bg-white/95 hover:shadow-md">
+              <Card className="border-emerald-100/80 bg-white/95">
                 <CardContent className="p-6">
                   <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
                     Prioridad en agenda

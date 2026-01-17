@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
+import WhatsAppLink from "./WhatsAppLink";
 
 const QUESTIONS = [
   "¿Sientes adormecimiento en pies o manos?",
@@ -18,6 +19,8 @@ export default function NeuropathyTest() {
   const [answers, setAnswers] = useState(
     Array.from({ length: QUESTIONS.length }, () => null)
   );
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const advanceTimeoutRef = useRef(null);
 
   const yesCount = useMemo(
     () => answers.filter((answer) => answer === true).length,
@@ -85,15 +88,16 @@ export default function NeuropathyTest() {
     return messages[riskInfo.level].join("\n");
   }, [riskInfo.level]);
 
-  const shareHref = useMemo(
-    () => `https://wa.me/?text=${encodeURIComponent(shareMessage)}`,
+  const shareMessageEncoded = useMemo(
+    () => encodeURIComponent(shareMessage),
     [shareMessage]
   );
 
-  const isPending = answeredCount === 0;
+  const isComplete = answeredCount === QUESTIONS.length;
+  const isPending = !isComplete;
 
   const displayInfo = useMemo(() => {
-    if (answeredCount === 0) {
+    if (!isComplete) {
       return {
         badge: "⚪ Evaluación en proceso",
         badgeClass: "border-emerald-200/70 bg-emerald-100 text-emerald-700",
@@ -111,7 +115,7 @@ export default function NeuropathyTest() {
       message: riskInfo.message,
       cta: riskInfo.cta,
     };
-  }, [answeredCount, riskInfo]);
+  }, [isComplete, riskInfo]);
 
   const handleAnswer = (index, value) => {
     setAnswers((current) => {
@@ -119,6 +123,63 @@ export default function NeuropathyTest() {
       updated[index] = value;
       return updated;
     });
+
+    if (advanceTimeoutRef.current) {
+      clearTimeout(advanceTimeoutRef.current);
+    }
+
+    if (index === currentIndex && index < QUESTIONS.length - 1) {
+      advanceTimeoutRef.current = setTimeout(() => {
+        setCurrentIndex(index + 1);
+      }, 300);
+    }
+  };
+
+  const renderQuestionCard = (question, index) => {
+    const isYesSelected = answers[index] === true;
+    const isNoSelected = answers[index] === false;
+
+    return (
+      <Card key={question} className="border border-emerald-100/80 bg-emerald-50/95">
+        <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-base text-emerald-900/90">{question}</p>
+          <div className="flex gap-3">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => handleAnswer(index, true)}
+              data-analytics-event="test_interaction"
+              data-analytics-label={`answer_yes_${index + 1}`}
+              className={`rounded-full border-2 ${
+                isYesSelected
+                  ? "border-emerald-600 bg-emerald-600 text-white ring-2 ring-emerald-200"
+                  : "border-emerald-300 text-emerald-700 hover:bg-emerald-50"
+              }`}
+              aria-pressed={isYesSelected}
+            >
+              S¡
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => handleAnswer(index, false)}
+              data-analytics-event="test_interaction"
+              data-analytics-label={`answer_no_${index + 1}`}
+              className={`rounded-full border-2 ${
+                isNoSelected
+                  ? "border-rose-500 bg-rose-500 text-white ring-2 ring-rose-200"
+                  : "border-rose-300 text-rose-600 hover:bg-rose-50"
+              }`}
+              aria-pressed={isNoSelected}
+            >
+              No
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    );
   };
 
   return (
@@ -129,52 +190,35 @@ export default function NeuropathyTest() {
             <h2 className="text-3xl font-semibold text-emerald-50 sm:text-4xl">
               Test rápido de neuropatía
             </h2>
-            <p className="mt-3 text-lg text-emerald-50/80">
+            <p className="mt-3 text-base text-emerald-50/80 sm:text-lg">
               Responde con sí o no. No guardamos tus respuestas ni compartimos
               información.
             </p>
-            <div className="mt-6 space-y-5">
-              {QUESTIONS.map((question, index) => (
-                <Card key={question} className="border border-emerald-100/80 bg-emerald-50/95">
-                  <CardContent className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
-                    <p className="text-base text-emerald-900/90">{question}</p>
-                    <div className="flex gap-3">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleAnswer(index, true)}
-                        data-analytics-event="test_interaction"
-                        data-analytics-label={`answer_yes_${index + 1}`}
-                        className={`rounded-full ${
-                          answers[index] === true
-                            ? "bg-emerald-600 text-white hover:bg-emerald-700"
-                            : "border-emerald-300 text-emerald-700 hover:bg-emerald-50"
-                        }`}
-                        aria-pressed={answers[index] === true}
-                      >
-                        Sí
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleAnswer(index, false)}
-                        data-analytics-event="test_interaction"
-                        data-analytics-label={`answer_no_${index + 1}`}
-                        className={`rounded-full ${
-                          answers[index] === false
-                            ? "bg-rose-500 text-white hover:bg-rose-600 border-rose-500"
-                            : "border-rose-300 text-rose-600 hover:bg-rose-50"
-                        }`}
-                        aria-pressed={answers[index] === false}
-                      >
-                        No
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="mt-6 space-y-6">
+              <div className="space-y-4 md:hidden">
+                <div className="flex items-center justify-between text-xs text-emerald-50/70">
+                  <span>
+                    Pregunta {currentIndex + 1} de {QUESTIONS.length}
+                  </span>
+                  <span>
+                    Progreso {answeredCount}/{QUESTIONS.length}
+                  </span>
+                </div>
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-emerald-900/40">
+                  <div
+                    className="h-full rounded-full bg-emerald-300/80 transition-all duration-300 ease-in-out"
+                    style={{
+                      width: `${((currentIndex + 1) / QUESTIONS.length) * 100}%`,
+                    }}
+                  />
+                </div>
+                {renderQuestionCard(QUESTIONS[currentIndex], currentIndex)}
+              </div>
+              <div className="hidden space-y-5 md:block">
+                {QUESTIONS.map((question, index) =>
+                  renderQuestionCard(question, index)
+                )}
+              </div>
             </div>
           </div>
           <Card className="bg-emerald-50/90">
@@ -214,15 +258,15 @@ export default function NeuropathyTest() {
                   className="mt-6 w-full rounded-full bg-emerald-600 text-white hover:bg-emerald-700"
                   asChild
                 >
-                  <a
-                    href={shareHref}
+                  <WhatsAppLink
+                    message={shareMessageEncoded}
                     target="_blank"
                     rel="noreferrer"
                     data-analytics-event="whatsapp_click"
                     data-analytics-label="test_share"
                   >
                     {displayInfo.cta}
-                  </a>
+                  </WhatsAppLink>
                 </Button>
               )}
               <p className="mt-3 text-xs text-emerald-900/70">

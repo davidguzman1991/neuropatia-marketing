@@ -1,7 +1,7 @@
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
-import { WHATSAPP_HREF } from "./WhatsAppButton";
+import WhatsAppLink from "./WhatsAppLink";
 
 export default function Pricing() {
   return (
@@ -11,7 +11,7 @@ export default function Pricing() {
           <h2 className="text-3xl font-semibold text-emerald-900 sm:text-4xl">
             💚 Precio especial por valoración prioritaria
           </h2>
-          <p className="text-lg text-emerald-900/80">
+          <p className="text-base text-emerald-900/80 sm:text-lg">
             Agenda tu evaluación médica completa con condiciones preferenciales.
           </p>
         </div>
@@ -62,15 +62,14 @@ export default function Pricing() {
               className="mt-6 w-full rounded-full bg-emerald-50 px-5 py-3 text-base font-semibold text-emerald-900 transition hover:bg-white"
               asChild
             >
-              <a
-                href={WHATSAPP_HREF}
+              <WhatsAppLink
                 target="_blank"
                 rel="noreferrer"
                 data-analytics-event="reserve_consultation_click"
                 data-analytics-label="pricing_special"
               >
                 📲 Agendar por WhatsApp ahora
-              </a>
+              </WhatsAppLink>
             </Button>
             <p className="mt-3 text-xs text-emerald-50/70">
               Cupos limitados por semana

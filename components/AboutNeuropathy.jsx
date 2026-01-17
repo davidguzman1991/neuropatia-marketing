@@ -9,17 +9,17 @@ export default function AboutNeuropathy() {
             <h2 className="text-3xl font-semibold text-emerald-900 sm:text-4xl">
               ¿Qué es la neuropatía diabética?
             </h2>
-            <p className="text-lg text-emerald-900/80">
+            <p className="text-base text-emerald-900/80 sm:text-lg">
               Es una lesión progresiva de los nervios causada por niveles altos de
               glucosa sostenidos en el tiempo. Puede afectar la sensibilidad,
               generar dolor y disminuir la movilidad.
             </p>
-            <p className="text-lg text-emerald-900/80">
+            <p className="text-base text-emerald-900/80 sm:text-lg">
               Una valoración médica permite determinar el grado de afectación y
               establecer un plan para controlar el dolor y prevenir lesiones.
             </p>
           </div>
-          <Card className="bg-white/95 hover:shadow-md">
+          <Card className="bg-white/95">
             <CardContent className="p-6">
               <h3 className="text-2xl font-semibold text-emerald-900">
                 En la consulta revisamos

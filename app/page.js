@@ -13,7 +13,7 @@ import WhatsAppButton from "../components/WhatsAppButton";
 export default function HomePage() {
   return (
     <div className="page-bg min-h-screen">
-      <main className="mx-auto max-w-6xl px-6">
+      <main className="mx-auto max-w-7xl px-4 sm:px-6">
         <Hero />
         <div className="py-10 sm:py-12">
           <Separator />

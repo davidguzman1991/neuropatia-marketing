@@ -36,15 +36,18 @@ export default function Complications() {
           <h2 className="text-3xl font-semibold text-emerald-900 sm:text-4xl">
             Complicaciones que podemos prevenir
           </h2>
-          <p className="text-lg text-emerald-900/80">
+          <p className="text-base text-emerald-900/80 sm:text-lg">
             La neuropatía diabética requiere un enfoque preventivo. Una
             evaluación oportuna puede evitar consecuencias severas en la calidad
             de vida.
           </p>
         </div>
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory md:grid md:grid-cols-2 md:overflow-visible md:pb-0 md:snap-none">
           {items.map((item) => (
-            <Card key={item.title} className="bg-white/90 hover:shadow-md">
+            <Card
+              key={item.title}
+              className="min-w-[85%] shrink-0 snap-start bg-white/90 md:min-w-0 md:snap-none"
+            >
               <CardContent className="p-6">
                 <div className="overflow-hidden rounded-xl">
                   <Image
@@ -52,7 +55,7 @@ export default function Complications() {
                     alt={item.title}
                     width={640}
                     height={420}
-                    className="w-full h-44 object-cover object-center rounded-xl mb-4 bg-emerald-50/60"
+                    className="mb-4 h-44 w-full max-h-52 object-cover object-center rounded-xl bg-emerald-50/60 sm:h-48"
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-emerald-900">

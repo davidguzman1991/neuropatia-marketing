@@ -20,7 +20,7 @@ export default function Symptoms() {
               <h2 className="text-3xl font-semibold text-emerald-50 sm:text-4xl">
                 Síntomas que requieren evaluación
               </h2>
-              <p className="text-lg text-emerald-50/80">
+              <p className="text-base text-emerald-50/80 sm:text-lg">
                 La neuropatía diabética suele iniciar de forma silenciosa. Reconocer
                 estos síntomas puede ayudarte a actuar antes de que haya daño
                 avanzado.
@@ -30,7 +30,7 @@ export default function Symptoms() {
               {symptoms.map((symptom) => (
                 <Card
                   key={symptom}
-                  className="border-emerald-100/80 bg-emerald-50/95 shadow-sm transition hover:shadow-md"
+                  className="border-emerald-100/80 bg-emerald-50/95"
                 >
                   <CardContent className="p-5">
                     <div className="flex items-start gap-3">
@@ -50,7 +50,7 @@ export default function Symptoms() {
               alt="Ilustración médica de síntomas de neuropatía diabética"
               width={800}
               height={800}
-              className="rounded-2xl object-contain opacity-95 ring-1 ring-white/15"
+              className="h-[320px] w-full max-h-[360px] rounded-2xl object-cover opacity-95 ring-1 ring-white/15 lg:h-[380px]"
             />
           </div>
         </div>
