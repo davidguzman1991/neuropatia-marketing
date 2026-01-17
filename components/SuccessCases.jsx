@@ -42,33 +42,41 @@ export default function SuccessCases() {
             Testimonios reales y anónimos de personas con neuropatía diabética.
           </p>
         </div>
-        <div className="flex gap-4 overflow-x-auto px-4 pb-4 -mx-4 snap-x snap-mandatory scroll-px-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 md:snap-none lg:grid-cols-3">
-          {cases.map((item) => (
-            <Card
-              key={item.title}
-              className="min-w-[82%] max-w-[360px] shrink-0 snap-center rounded-2xl border border-teal-200 bg-white sm:min-w-[70%] md:min-w-0 md:max-w-none md:snap-none"
-            >
-              <CardContent className="space-y-4 p-5 sm:p-6">
-                <Badge className="w-fit rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal-700">
-                  Historia real
-                </Badge>
-                <h3 className="text-lg font-semibold text-emerald-900">
-                  {item.title}
-                </h3>
-                <div className="space-y-3 text-sm text-emerald-900/80">
-                  <p>{item.quoteA}</p>
-                  <p>{item.quoteB}</p>
-                </div>
-                <hr className="border-teal-100" />
-                <p className="text-sm font-semibold text-emerald-900">
-                  {item.outcome}
-                </p>
-                <p className="text-xs text-emerald-900/60">
-                  Testimonio real anonimizado
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="space-y-2">
+          <div className="flex items-center justify-end text-xs font-semibold text-emerald-700/60 md:hidden">
+            Desliza &gt;
+          </div>
+          <div className="relative">
+            <div className="flex gap-4 overflow-x-auto px-4 pb-4 -mx-4 snap-x snap-mandatory scroll-px-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 md:snap-none lg:grid-cols-3">
+              {cases.map((item) => (
+                <Card
+                  key={item.title}
+                  className="min-w-[82%] max-w-[360px] shrink-0 snap-center rounded-2xl border border-teal-200 bg-white sm:min-w-[70%] md:min-w-0 md:max-w-none md:snap-none"
+                >
+                  <CardContent className="space-y-4 p-5 sm:p-6">
+                    <Badge className="w-fit rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal-700">
+                      Historia real
+                    </Badge>
+                    <h3 className="text-lg font-semibold text-emerald-900">
+                      {item.title}
+                    </h3>
+                    <div className="space-y-3 text-sm text-emerald-900/80">
+                      <p>{item.quoteA}</p>
+                      <p>{item.quoteB}</p>
+                    </div>
+                    <hr className="border-teal-100" />
+                    <p className="text-sm font-semibold text-emerald-900">
+                      {item.outcome}
+                    </p>
+                    <p className="text-xs text-emerald-900/60">
+                      Testimonio real anonimizado
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-[#f7f2ea] to-transparent md:hidden" />
+          </div>
         </div>
         <div className="space-y-4 text-center">
           <p className="text-base text-emerald-900/80 sm:text-lg">
