@@ -21,6 +21,17 @@ export default function Hero() {
               clínico cercano. Si ya presentas molestias, una valoración temprana
               puede ayudarte a evitar complicaciones.
             </p>
+            <div className="md:hidden">
+              <div className="overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-soft">
+                <Image
+                  src="/hero/neuropatia-hero-medico.webp"
+                  alt="Evaluación médica de neuropatía diabética"
+                  width={900}
+                  height={1200}
+                  className="h-56 w-full object-cover object-center sm:h-64"
+                />
+              </div>
+            </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button
                 size="lg"
