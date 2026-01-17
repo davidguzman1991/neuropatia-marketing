@@ -142,8 +142,10 @@ export default function NeuropathyTest() {
     return (
       <Card key={question} className="border border-emerald-100/80 bg-emerald-50/95">
         <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-base text-emerald-900/90">{question}</p>
-          <div className="flex gap-3">
+          <p className="min-w-0 text-base text-emerald-900/90 break-words sm:flex-1">
+            {question}
+          </p>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <Button
               type="button"
               variant="outline"
@@ -151,7 +153,7 @@ export default function NeuropathyTest() {
               onClick={() => handleAnswer(index, true)}
               data-analytics-event="test_interaction"
               data-analytics-label={`answer_yes_${index + 1}`}
-              className={`rounded-full border-2 ${
+              className={`w-full rounded-full border-2 sm:w-auto ${
                 isYesSelected
                   ? "border-emerald-600 bg-emerald-600 text-white ring-2 ring-emerald-200"
                   : "border-emerald-300 text-emerald-700 hover:bg-emerald-50"
@@ -167,7 +169,7 @@ export default function NeuropathyTest() {
               onClick={() => handleAnswer(index, false)}
               data-analytics-event="test_interaction"
               data-analytics-label={`answer_no_${index + 1}`}
-              className={`rounded-full border-2 ${
+              className={`w-full rounded-full border-2 sm:w-auto ${
                 isNoSelected
                   ? "border-rose-500 bg-rose-500 text-white ring-2 ring-rose-200"
                   : "border-rose-300 text-rose-600 hover:bg-rose-50"
@@ -184,9 +186,9 @@ export default function NeuropathyTest() {
 
   return (
     <section id="test" className="section">
-      <div className="rounded-3xl bg-emerald-800/95 p-8 shadow-soft">
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          <div>
+      <div className="rounded-3xl bg-emerald-800/95 p-6 shadow-soft sm:p-8">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="min-w-0">
             <h2 className="text-3xl font-semibold text-emerald-50 sm:text-4xl">
               Test rápido de neuropatía
             </h2>
@@ -221,7 +223,7 @@ export default function NeuropathyTest() {
               </div>
             </div>
           </div>
-          <Card className="bg-emerald-50/90">
+          <Card className="min-w-0 bg-emerald-50/90">
             <CardContent className="p-6">
               <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
                 Resultado orientativo
