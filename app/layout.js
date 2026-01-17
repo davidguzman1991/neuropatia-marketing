@@ -14,32 +14,21 @@ const sourceSerif = Source_Serif_4({
   display: "swap",
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://example.com");
+const siteUrl = "https://neuropatia-marketing.vercel.app";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: "Neuropatía diabética | Dr. David Guzmán",
   description:
     "Dolor, ardor u hormigueo en los pies no es normal. Evaluación médica especializada en neuropatía diabética.",
-  keywords: [
-    "neuropat¡a diab‚tica",
-    "dolor en pies",
-    "especialista en diabetes Guayaquil",
-    "valoraci¢n neuropat¡a",
-    "pie diab‚tico",
-  ],
   openGraph: {
+    type: "website",
+    url: siteUrl,
     title: "Dolor y ardor en los pies no es normal",
     description: "Evaluación médica especializada en neuropatía diabética.",
-    url: siteUrl,
-    siteName: "Neuropat¡a diab‚tica",
-    locale: "es_EC",
-    type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: `${siteUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: "Neuropatía diabética – Dr. David Guzmán",
@@ -48,10 +37,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Neuropatía diabética | Dr. David Guzmán",
-    description:
-      "Dolor, ardor u hormigueo en los pies no es normal. Evaluación médica especializada en neuropatía diabética.",
-    images: ["/og-image.jpg"],
+    title: "Dolor y ardor en los pies no es normal",
+    description: "Evaluación médica especializada en neuropatía diabética.",
+    images: [`${siteUrl}/og-image.jpg`],
   },
 };
 
