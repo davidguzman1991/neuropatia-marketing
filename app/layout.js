@@ -15,7 +15,8 @@ const sourceSerif = Source_Serif_4({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://example.com");
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
