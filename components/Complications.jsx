@@ -46,7 +46,7 @@ export default function Complications() {
           {items.map((item) => (
             <Card
               key={item.title}
-              className="min-w-[80%] shrink-0 snap-center bg-white/90 sm:min-w-[70%] md:min-w-0 md:snap-none"
+              className="min-w-[75%] shrink-0 snap-center bg-white/90 sm:min-w-[65%] md:min-w-0 md:snap-none"
             >
               <CardContent className="p-5 sm:p-6">
                 <div className="overflow-hidden rounded-xl">
