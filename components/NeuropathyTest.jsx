@@ -13,7 +13,6 @@ const QUESTIONS = [
   "¿Sientes calambres o debilidad al caminar?",
   "¿Has perdido sensibilidad al tacto o temperatura?",
 ];
-const MOBILE_QUESTIONS = QUESTIONS.slice(0, 3);
 
 export default function NeuropathyTest() {
   // Estado local para respuestas; no se guarda ni se envía.
@@ -21,10 +20,6 @@ export default function NeuropathyTest() {
     Array.from({ length: QUESTIONS.length }, () => null)
   );
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [mobileAnswers, setMobileAnswers] = useState(
-    Array.from({ length: MOBILE_QUESTIONS.length }, () => null)
-  );
-  const [mobileIndex, setMobileIndex] = useState(0);
   const advanceTimeoutRef = useRef(null);
 
   const yesCount = useMemo(
@@ -35,10 +30,6 @@ export default function NeuropathyTest() {
   const answeredCount = useMemo(
     () => answers.filter((answer) => answer !== null).length,
     [answers]
-  );
-  const mobileAnsweredCount = useMemo(
-    () => mobileAnswers.filter((answer) => answer !== null).length,
-    [mobileAnswers]
   );
 
   const riskInfo = useMemo(() => {
@@ -104,7 +95,6 @@ export default function NeuropathyTest() {
 
   const isComplete = answeredCount === QUESTIONS.length;
   const isPending = !isComplete;
-  const isMobileComplete = mobileAnsweredCount === MOBILE_QUESTIONS.length;
 
   const displayInfo = useMemo(() => {
     if (!isComplete) {
@@ -145,23 +135,6 @@ export default function NeuropathyTest() {
     }
   };
 
-  const handleMobileAnswer = (index, value) => {
-    setMobileAnswers((current) => {
-      const updated = [...current];
-      updated[index] = value;
-      return updated;
-    });
-
-    if (advanceTimeoutRef.current) {
-      clearTimeout(advanceTimeoutRef.current);
-    }
-
-    if (index === mobileIndex && index < MOBILE_QUESTIONS.length - 1) {
-      advanceTimeoutRef.current = setTimeout(() => {
-        setMobileIndex(index + 1);
-      }, 300);
-    }
-  };
 
   const renderQuestionCard = (question, index, activeAnswers, onAnswer) => {
     const isYesSelected = activeAnswers[index] === true;
@@ -226,43 +199,83 @@ export default function NeuropathyTest() {
           <div className="space-y-4">
             <div className="flex items-center justify-between text-xs text-emerald-50/70">
               <span>
-                Pregunta {mobileIndex + 1} de {MOBILE_QUESTIONS.length}
+                Pregunta {currentIndex + 1} de {QUESTIONS.length}
               </span>
               <span>
-                Progreso {mobileAnsweredCount}/{MOBILE_QUESTIONS.length}
+                Progreso {answeredCount}/{QUESTIONS.length}
               </span>
             </div>
             <div className="h-1.5 w-full overflow-hidden rounded-full bg-emerald-900/40">
               <div
                 className="h-full rounded-full bg-emerald-300/80 transition-all duration-300 ease-in-out"
                 style={{
-                  width: `${((mobileIndex + 1) / MOBILE_QUESTIONS.length) * 100}%`,
+                  width: `${((currentIndex + 1) / QUESTIONS.length) * 100}%`,
                 }}
               />
             </div>
             {renderQuestionCard(
-              MOBILE_QUESTIONS[mobileIndex],
-              mobileIndex,
-              mobileAnswers,
-              handleMobileAnswer
+              QUESTIONS[currentIndex],
+              currentIndex,
+              answers,
+              handleAnswer
             )}
           </div>
-          {isMobileComplete && (
-            <Button
-              size="lg"
-              className="w-full rounded-full bg-emerald-400 text-emerald-950 shadow-soft hover:bg-emerald-300"
-              asChild
-            >
-              <WhatsAppLink
-                target="_blank"
-                rel="noreferrer"
-                data-analytics-event="whatsapp_click"
-                data-analytics-label="test_mobile_cta"
+          <Card className="bg-emerald-50/95">
+            <CardContent className="p-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+                Resultado orientativo
+              </p>
+              <Badge
+                className={`mt-3 w-full justify-center rounded-2xl border-2 px-4 py-2 text-base font-semibold ${displayInfo.badgeClass}`}
               >
-                Agendar por WhatsApp
-              </WhatsAppLink>
-            </Button>
-          )}
+                {displayInfo.badge}
+              </Badge>
+              <h3 className="mt-3 text-lg font-semibold text-emerald-900">
+                {displayInfo.title}
+              </h3>
+              <p className="mt-2 text-sm text-emerald-900/80">
+                {displayInfo.message}
+              </p>
+              {!isPending && (
+                <p className="mt-3 text-xs text-emerald-900/70">
+                  Este test es informativo y no reemplaza una consulta médica.
+                </p>
+              )}
+              {isPending ? (
+                <Button
+                  type="button"
+                  size="lg"
+                  className="mt-5 w-full rounded-full bg-emerald-100 text-emerald-700/60 hover:bg-emerald-100"
+                  disabled
+                >
+                  {displayInfo.cta}
+                </Button>
+              ) : (
+                <Button
+                  type="button"
+                  size="lg"
+                  className="mt-5 w-full rounded-full bg-emerald-600 text-white hover:bg-emerald-700"
+                  asChild
+                >
+                  <WhatsAppLink
+                    message={shareMessageEncoded}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-analytics-event="whatsapp_click"
+                    data-analytics-label="test_share_mobile"
+                  >
+                    {displayInfo.cta}
+                  </WhatsAppLink>
+                </Button>
+              )}
+              <p className="mt-3 text-xs text-emerald-900/70">
+                La neuropatía diabética puede ser silenciosa en etapas iniciales.
+              </p>
+              <p className="mt-4 text-xs text-emerald-900/70">
+                Preguntas respondidas: {answeredCount}/{QUESTIONS.length}
+              </p>
+            </CardContent>
+          </Card>
         </div>
 
         <div className="hidden gap-6 sm:gap-8 md:grid lg:grid-cols-[1.2fr_0.8fr]">
