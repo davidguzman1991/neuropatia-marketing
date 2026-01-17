@@ -16,7 +16,7 @@ export default function Hero() {
             Dolor, ardor u hormigueo en los pies no es normal.
           </h1>
           <p className="text-sm text-emerald-50/80">
-            Evaluamos neuropat¡a diab‚tica con enfoque preventivo para aliviar el dolor y evitar complicaciones.
+            Evaluamos neuropatía diabética con enfoque preventivo para aliviar el dolor y evitar complicaciones.
           </p>
           <Button
             size="lg"
@@ -33,12 +33,12 @@ export default function Hero() {
             </WhatsAppLink>
           </Button>
           <a href="#sintomas" className="text-sm font-semibold text-emerald-50/80 underline">
-            Ver s¡ntomas
+            Ver síntomas
           </a>
           <div className="overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-soft">
             <Image
               src="/hero/neuropatia-hero-medico.webp"
-              alt="Evaluaci¢n m‚dica de neuropat¡a diab‚tica"
+              alt="Evaluación médica de neuropatía diabética"
               width={900}
               height={1200}
               className="h-44 w-full object-cover object-center"

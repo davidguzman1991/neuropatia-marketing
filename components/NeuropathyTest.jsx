@@ -188,7 +188,7 @@ export default function NeuropathyTest() {
               }`}
               aria-pressed={isYesSelected}
             >
-              S¡
+              Sí
             </Button>
             <Button
               type="button"
@@ -217,11 +217,11 @@ export default function NeuropathyTest() {
       <div className="rounded-3xl bg-emerald-800/95 p-6 shadow-soft sm:p-8">
         <div className="space-y-6 md:hidden">
           <h2 className="text-3xl font-semibold text-emerald-50">
-            Test r pido de neuropat¡a
+            Test rápido de neuropatía
           </h2>
           <p className="text-base text-emerald-50/80">
-            Responde con s¡ o no. No guardamos tus respuestas ni compartimos
-            informaci¢n.
+            Responde con sí o no. No guardamos tus respuestas ni compartimos
+            información.
           </p>
           <div className="space-y-4">
             <div className="flex items-center justify-between text-xs text-emerald-50/70">

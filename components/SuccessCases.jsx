@@ -83,7 +83,7 @@ export default function SuccessCases() {
               data-analytics-event="whatsapp_click"
               data-analytics-label="stories_cta"
             >
-              Hablar con el m‚dico por WhatsApp
+              Hablar con el médico por WhatsApp
             </WhatsAppLink>
           </Button>
         </div>

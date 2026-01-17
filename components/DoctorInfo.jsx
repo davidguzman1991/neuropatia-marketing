@@ -138,7 +138,7 @@ export default function DoctorInfo() {
                     Dr. David Guzmán P.
                   </h2>
                   <p className="text-xs font-semibold text-emerald-700/80">
-                    Atenci¢n centrada en el alivio del dolor neurop tico
+                    Atención centrada en el alivio del dolor neuropático
                   </p>
                   <p className="text-sm text-emerald-900/70">
                     Endocrinología clínica - Especialista en Diabetes

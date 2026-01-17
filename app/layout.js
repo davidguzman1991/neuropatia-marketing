@@ -50,9 +50,9 @@ export default function RootLayout({ children }) {
     "@graph": [
       {
         "@type": "MedicalBusiness",
-        name: "Atenci¢n de neuropat¡a diab‚tica - Dr. David Guzm n",
+        name: "Atención de neuropatía diabética - Dr. David Guzmán",
         description:
-          "Valoraci¢n cl¡nica de neuropat¡a diab‚tica y dolor en pies con enfoque preventivo.",
+          "Valoración clínica de neuropatía diabética y dolor en pies con enfoque preventivo.",
         url: siteUrl,
         image: `${siteUrl}/hero/neuropatia-hero-medico.webp`,
         priceRange: "$45-$60",
@@ -68,12 +68,12 @@ export default function RootLayout({ children }) {
       },
       {
         "@type": "Physician",
-        name: "Dr. David Guzm n P.",
-        medicalSpecialty: "Endocrinolog¡a",
+        name: "Dr. David Guzmán P.",
+        medicalSpecialty: "Endocrinología",
         areaServed: "Guayaquil",
         worksFor: {
           "@type": "MedicalBusiness",
-          name: "Atenci¢n de neuropat¡a diab‚tica - Dr. David Guzm n",
+          name: "Atención de neuropatía diabética - Dr. David Guzmán",
         },
       },
     ],
