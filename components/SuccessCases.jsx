@@ -42,13 +42,13 @@ export default function SuccessCases() {
             Testimonios reales y anónimos de personas con neuropatía diabética.
           </p>
         </div>
-        <div className="flex gap-4 overflow-x-auto px-4 pb-4 -mx-4 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 md:snap-none lg:grid-cols-3">
+        <div className="flex gap-4 overflow-x-auto px-4 pb-4 -mx-4 snap-x snap-mandatory scroll-px-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 md:snap-none lg:grid-cols-3">
           {cases.map((item) => (
             <Card
               key={item.title}
-              className="min-w-[85%] shrink-0 snap-center rounded-2xl border border-teal-200 bg-white sm:min-w-[70%] md:min-w-0 md:snap-none"
+              className="min-w-[82%] max-w-[360px] shrink-0 snap-center rounded-2xl border border-teal-200 bg-white sm:min-w-[70%] md:min-w-0 md:max-w-none md:snap-none"
             >
-              <CardContent className="space-y-4 p-6">
+              <CardContent className="space-y-4 p-5 sm:p-6">
                 <Badge className="w-fit rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal-700">
                   Historia real
                 </Badge>

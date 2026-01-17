@@ -42,11 +42,11 @@ export default function Complications() {
             de vida.
           </p>
         </div>
-        <div className="flex gap-4 overflow-x-auto px-4 pb-4 snap-x snap-mandatory -mx-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 md:snap-none">
+        <div className="flex gap-4 overflow-x-auto px-4 pb-4 -mx-4 snap-x snap-mandatory scroll-px-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 md:snap-none">
           {items.map((item) => (
             <Card
               key={item.title}
-              className="min-w-[75%] shrink-0 snap-center bg-white/90 sm:min-w-[65%] md:min-w-0 md:snap-none"
+              className="min-w-[72%] max-w-[320px] shrink-0 snap-center bg-white/90 sm:min-w-[60%] md:min-w-0 md:max-w-none md:snap-none"
             >
               <CardContent className="p-5 sm:p-6">
                 <div className="overflow-hidden rounded-xl">
@@ -55,7 +55,7 @@ export default function Complications() {
                     alt={item.title}
                     width={640}
                     height={420}
-                    className="mb-4 h-36 w-full max-h-52 rounded-xl object-cover object-center bg-emerald-50/60 sm:h-44 sm:max-h-48"
+                    className="mb-4 h-32 w-full max-h-40 rounded-xl object-cover object-center bg-emerald-50/60 sm:h-40 sm:max-h-48"
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-emerald-900">
