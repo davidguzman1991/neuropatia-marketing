@@ -3,7 +3,7 @@ import { Card, CardContent } from "./ui/card";
 export default function AboutNeuropathy() {
   return (
     <section id="que-es" className="section">
-      <div className="rounded-3xl bg-gradient-to-br from-emerald-50 via-teal-50 to-sky-50 p-8 shadow-sm ring-1 ring-emerald-100/70 sm:p-10">
+      <div className="rounded-3xl border border-emerald-100/80 bg-white/95 p-6 shadow-sm sm:border-0 sm:bg-gradient-to-br sm:from-emerald-50 sm:via-teal-50 sm:to-sky-50 sm:p-10 sm:ring-1 sm:ring-emerald-100/70">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5">
             <h2 className="text-3xl font-semibold text-emerald-900 sm:text-4xl">

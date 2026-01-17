@@ -33,7 +33,7 @@ export default function SuccessCases() {
 
   return (
     <section id="casos" className="section">
-      <div className="mx-auto max-w-6xl space-y-8">
+      <div className="mx-auto max-w-6xl space-y-8 rounded-3xl border border-emerald-100/80 bg-white/95 p-6 shadow-sm sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
         <div className="max-w-3xl space-y-3">
           <h2 className="text-3xl font-semibold text-emerald-900 sm:text-4xl">
             Historias reales de pacientes
@@ -47,7 +47,7 @@ export default function SuccessCases() {
             Desliza &gt;
           </div>
           <div className="relative">
-            <div className="flex gap-4 overflow-x-auto px-4 pb-4 -mx-4 snap-x snap-mandatory scroll-px-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 md:snap-none lg:grid-cols-3">
+            <div className="flex gap-4 overflow-x-auto -mx-6 px-6 pb-4 snap-x snap-mandatory scroll-px-6 sm:mx-0 sm:px-0 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 md:snap-none lg:grid-cols-3">
               {cases.map((item) => (
                 <Card
                   key={item.title}
@@ -75,7 +75,7 @@ export default function SuccessCases() {
                 </Card>
               ))}
             </div>
-            <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-[#f7f2ea] to-transparent md:hidden" />
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-white to-transparent md:hidden" />
           </div>
         </div>
         <div className="space-y-4 text-center">
