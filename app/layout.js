@@ -15,6 +15,7 @@ const sourceSerif = Source_Serif_4({
 });
 
 const siteUrl = "https://neuropatia-marketing.vercel.app";
+const GA_MEASUREMENT_ID = "G-STV00FN7NN";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -44,7 +45,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -81,20 +81,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${inter.variable} ${sourceSerif.variable}`}>
       <body className="min-h-screen bg-sand text-ink antialiased">
-        {gaId ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga-init" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${gaId}', { anonymize_ip: true });`}
-            </Script>
-            <Script id="analytics-events" strategy="afterInteractive">
-              {`document.addEventListener('click', function(event) {
+gtag('config', '${GA_MEASUREMENT_ID}', {
+  anonymize_ip: true,
+  send_page_view: true
+});`}
+        </Script>
+        <Script id="analytics-events" strategy="afterInteractive">
+          {`document.addEventListener('click', function(event) {
   var target = event.target.closest('[data-analytics-event]');
   if (!target || typeof window.gtag !== 'function') return;
   var eventName = target.getAttribute('data-analytics-event');
@@ -104,9 +105,7 @@ gtag('config', '${gaId}', { anonymize_ip: true });`}
     event_label: eventLabel
   });
 });`}
-            </Script>
-          </>
-        ) : null}
+        </Script>
         <Script id="schema-medical" type="application/ld+json">
           {JSON.stringify(structuredData)}
         </Script>
