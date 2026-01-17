@@ -42,6 +42,11 @@ export const metadata = {
     description: "Evaluación médica especializada en neuropatía diabética.",
     images: [`${siteUrl}/og-image.jpg`],
   },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
