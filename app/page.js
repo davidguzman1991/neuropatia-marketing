@@ -15,25 +15,25 @@ export default function HomePage() {
     <div className="page-bg min-h-screen">
       <main className="mx-auto max-w-7xl px-4 sm:px-6">
         <Hero />
-        <div className="py-10 sm:py-12">
+        <div className="py-8 sm:py-10">
           <Separator />
         </div>
         <Symptoms />
-        <div className="py-10 sm:py-12">
+        <div className="py-8 sm:py-10">
           <Separator />
         </div>
         <AboutNeuropathy />
         <Complications />
-        <div className="py-10 sm:py-12">
+        <div className="py-8 sm:py-10">
           <Separator />
         </div>
         <SuccessCases />
-        <div className="py-10 sm:py-12">
+        <div className="py-8 sm:py-10">
           <Separator />
         </div>
         <NeuropathyTest />
         <Pricing />
-        <div className="py-10 sm:py-12">
+        <div className="py-8 sm:py-10">
           <Separator />
         </div>
         <DoctorInfo />
