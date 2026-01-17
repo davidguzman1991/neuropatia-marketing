@@ -65,6 +65,7 @@ export default function Pricing() {
               <WhatsAppLink
                 target="_blank"
                 rel="noreferrer"
+                location="doctor"
                 data-analytics-event="reserve_consultation_click"
                 data-analytics-label="pricing_special"
               >

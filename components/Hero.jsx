@@ -26,6 +26,7 @@ export default function Hero() {
             <WhatsAppLink
               target="_blank"
               rel="noreferrer"
+              location="hero"
               data-analytics-event="whatsapp_click"
               data-analytics-label="hero_cta"
             >
@@ -69,6 +70,7 @@ export default function Hero() {
                 <WhatsAppLink
                   target="_blank"
                   rel="noreferrer"
+                  location="hero"
                   data-analytics-event="whatsapp_click"
                   data-analytics-label="hero_cta"
                 >

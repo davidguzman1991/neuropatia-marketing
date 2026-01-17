@@ -261,6 +261,7 @@ export default function NeuropathyTest() {
                     message={shareMessageEncoded}
                     target="_blank"
                     rel="noreferrer"
+                    location="test"
                     data-analytics-event="whatsapp_click"
                     data-analytics-label="test_share_mobile"
                   >
@@ -336,6 +337,7 @@ export default function NeuropathyTest() {
                     message={shareMessageEncoded}
                     target="_blank"
                     rel="noreferrer"
+                    location="test"
                     data-analytics-event="whatsapp_click"
                     data-analytics-label="test_share"
                   >

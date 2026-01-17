@@ -103,6 +103,7 @@ function ConsultationDetails({ tone = "dark", compact = false }) {
         <WhatsAppLink
           target="_blank"
           rel="noreferrer"
+          location="doctor"
           data-analytics-event="whatsapp_click"
           data-analytics-label="doctor_cta"
         >
@@ -170,6 +171,7 @@ export default function DoctorInfo() {
                 <WhatsAppLink
                   target="_blank"
                   rel="noreferrer"
+                  location="doctor"
                   data-analytics-event="whatsapp_click"
                   data-analytics-label="doctor_mobile_cta"
                 >

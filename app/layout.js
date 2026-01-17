@@ -99,6 +99,7 @@ gtag('config', '${GA_MEASUREMENT_ID}', {
   var target = event.target.closest('[data-analytics-event]');
   if (!target || typeof window.gtag !== 'function') return;
   var eventName = target.getAttribute('data-analytics-event');
+  if (eventName === 'whatsapp_click') return;
   var eventLabel = target.getAttribute('data-analytics-label') || 'unknown';
   window.gtag('event', eventName, {
     event_category: 'engagement',

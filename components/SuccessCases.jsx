@@ -80,6 +80,7 @@ export default function SuccessCases() {
             <WhatsAppLink
               target="_blank"
               rel="noreferrer"
+              location="doctor"
               data-analytics-event="whatsapp_click"
               data-analytics-label="stories_cta"
             >
@@ -137,6 +138,7 @@ export default function SuccessCases() {
             <WhatsAppLink
               target="_blank"
               rel="noreferrer"
+              location="doctor"
               data-analytics-event="whatsapp_click"
               data-analytics-label="stories_cta"
             >
