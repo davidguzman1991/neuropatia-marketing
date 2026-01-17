@@ -162,6 +162,20 @@ export default function DoctorInfo() {
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
+              <Button
+                size="lg"
+                className="w-full rounded-full bg-emerald-500 text-white shadow-soft hover:bg-emerald-600"
+                asChild
+              >
+                <WhatsAppLink
+                  target="_blank"
+                  rel="noreferrer"
+                  data-analytics-event="whatsapp_click"
+                  data-analytics-label="doctor_mobile_cta"
+                >
+                  Hablar con el médico
+                </WhatsAppLink>
+              </Button>
             </CardContent>
           </Card>
           <Card className="bg-white/95 shadow-lg ring-1 ring-black/5">

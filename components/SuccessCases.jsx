@@ -30,6 +30,8 @@ export default function SuccessCases() {
       outcome: "Resultado: Menos lesiones y mayor control del riesgo.",
     },
   ];
+  const featuredCase = cases[0];
+  const mobileExcerpt = featuredCase.quoteA;
 
   return (
     <section id="casos" className="section">
@@ -42,7 +44,51 @@ export default function SuccessCases() {
             Testimonios reales y anónimos de personas con neuropatía diabética.
           </p>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-4 md:hidden">
+          <Card className="rounded-2xl border border-teal-200 bg-white">
+            <CardContent className="space-y-4 p-5">
+              <Badge className="w-fit rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal-700">
+                Historia real
+              </Badge>
+              <h3 className="text-lg font-semibold text-emerald-900">
+                {featuredCase.title}
+              </h3>
+              <p
+                className="text-sm text-emerald-900/80"
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 4,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
+                {mobileExcerpt}
+              </p>
+              <p className="text-sm font-semibold text-emerald-900">
+                {featuredCase.outcome}
+              </p>
+              <p className="text-xs text-emerald-900/60">
+                Testimonio real anonimizado
+              </p>
+            </CardContent>
+          </Card>
+          <Button
+            size="lg"
+            className="w-full rounded-full bg-teal-700 text-white hover:bg-teal-600"
+            asChild
+          >
+            <WhatsAppLink
+              target="_blank"
+              rel="noreferrer"
+              data-analytics-event="whatsapp_click"
+              data-analytics-label="stories_cta"
+            >
+              Hablar con el m‚dico por WhatsApp
+            </WhatsAppLink>
+          </Button>
+        </div>
+
+        <div className="hidden space-y-2 md:block">
           <div className="flex items-center justify-end text-xs font-semibold text-emerald-700/60 md:hidden">
             Desliza &gt;
           </div>
@@ -78,7 +124,7 @@ export default function SuccessCases() {
             <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-white to-transparent md:hidden" />
           </div>
         </div>
-        <div className="space-y-4 text-center">
+        <div className="hidden space-y-4 text-center md:block">
           <p className="text-base text-emerald-900/80 sm:text-lg">
             ¿Te identificas con alguna de estas historias? El dolor no es normal.
             Una evaluación a tiempo puede cambiarlo.

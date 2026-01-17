@@ -13,6 +13,7 @@ const QUESTIONS = [
   "¿Sientes calambres o debilidad al caminar?",
   "¿Has perdido sensibilidad al tacto o temperatura?",
 ];
+const MOBILE_QUESTIONS = QUESTIONS.slice(0, 3);
 
 export default function NeuropathyTest() {
   // Estado local para respuestas; no se guarda ni se envía.
@@ -20,6 +21,10 @@ export default function NeuropathyTest() {
     Array.from({ length: QUESTIONS.length }, () => null)
   );
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mobileAnswers, setMobileAnswers] = useState(
+    Array.from({ length: MOBILE_QUESTIONS.length }, () => null)
+  );
+  const [mobileIndex, setMobileIndex] = useState(0);
   const advanceTimeoutRef = useRef(null);
 
   const yesCount = useMemo(
@@ -30,6 +35,10 @@ export default function NeuropathyTest() {
   const answeredCount = useMemo(
     () => answers.filter((answer) => answer !== null).length,
     [answers]
+  );
+  const mobileAnsweredCount = useMemo(
+    () => mobileAnswers.filter((answer) => answer !== null).length,
+    [mobileAnswers]
   );
 
   const riskInfo = useMemo(() => {
@@ -95,6 +104,7 @@ export default function NeuropathyTest() {
 
   const isComplete = answeredCount === QUESTIONS.length;
   const isPending = !isComplete;
+  const isMobileComplete = mobileAnsweredCount === MOBILE_QUESTIONS.length;
 
   const displayInfo = useMemo(() => {
     if (!isComplete) {
@@ -135,9 +145,27 @@ export default function NeuropathyTest() {
     }
   };
 
-  const renderQuestionCard = (question, index) => {
-    const isYesSelected = answers[index] === true;
-    const isNoSelected = answers[index] === false;
+  const handleMobileAnswer = (index, value) => {
+    setMobileAnswers((current) => {
+      const updated = [...current];
+      updated[index] = value;
+      return updated;
+    });
+
+    if (advanceTimeoutRef.current) {
+      clearTimeout(advanceTimeoutRef.current);
+    }
+
+    if (index === mobileIndex && index < MOBILE_QUESTIONS.length - 1) {
+      advanceTimeoutRef.current = setTimeout(() => {
+        setMobileIndex(index + 1);
+      }, 300);
+    }
+  };
+
+  const renderQuestionCard = (question, index, activeAnswers, onAnswer) => {
+    const isYesSelected = activeAnswers[index] === true;
+    const isNoSelected = activeAnswers[index] === false;
 
     return (
       <Card key={question} className="border border-emerald-100/80 bg-emerald-50/95">
@@ -150,7 +178,7 @@ export default function NeuropathyTest() {
               type="button"
               variant="outline"
               size="sm"
-              onClick={() => handleAnswer(index, true)}
+              onClick={() => onAnswer(index, true)}
               data-analytics-event="test_interaction"
               data-analytics-label={`answer_yes_${index + 1}`}
               className={`w-full rounded-full border-2 sm:w-auto ${
@@ -166,7 +194,7 @@ export default function NeuropathyTest() {
               type="button"
               variant="outline"
               size="sm"
-              onClick={() => handleAnswer(index, false)}
+              onClick={() => onAnswer(index, false)}
               data-analytics-event="test_interaction"
               data-analytics-label={`answer_no_${index + 1}`}
               className={`w-full rounded-full border-2 sm:w-auto ${
@@ -187,7 +215,57 @@ export default function NeuropathyTest() {
   return (
     <section id="test" className="section">
       <div className="rounded-3xl bg-emerald-800/95 p-6 shadow-soft sm:p-8">
-        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="space-y-6 md:hidden">
+          <h2 className="text-3xl font-semibold text-emerald-50">
+            Test r pido de neuropat¡a
+          </h2>
+          <p className="text-base text-emerald-50/80">
+            Responde con s¡ o no. No guardamos tus respuestas ni compartimos
+            informaci¢n.
+          </p>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between text-xs text-emerald-50/70">
+              <span>
+                Pregunta {mobileIndex + 1} de {MOBILE_QUESTIONS.length}
+              </span>
+              <span>
+                Progreso {mobileAnsweredCount}/{MOBILE_QUESTIONS.length}
+              </span>
+            </div>
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-emerald-900/40">
+              <div
+                className="h-full rounded-full bg-emerald-300/80 transition-all duration-300 ease-in-out"
+                style={{
+                  width: `${((mobileIndex + 1) / MOBILE_QUESTIONS.length) * 100}%`,
+                }}
+              />
+            </div>
+            {renderQuestionCard(
+              MOBILE_QUESTIONS[mobileIndex],
+              mobileIndex,
+              mobileAnswers,
+              handleMobileAnswer
+            )}
+          </div>
+          {isMobileComplete && (
+            <Button
+              size="lg"
+              className="w-full rounded-full bg-emerald-400 text-emerald-950 shadow-soft hover:bg-emerald-300"
+              asChild
+            >
+              <WhatsAppLink
+                target="_blank"
+                rel="noreferrer"
+                data-analytics-event="whatsapp_click"
+                data-analytics-label="test_mobile_cta"
+              >
+                Agendar por WhatsApp
+              </WhatsAppLink>
+            </Button>
+          )}
+        </div>
+
+        <div className="hidden gap-6 sm:gap-8 md:grid lg:grid-cols-[1.2fr_0.8fr]">
           <div className="min-w-0">
             <h2 className="text-3xl font-semibold text-emerald-50 sm:text-4xl">
               Test rápido de neuropatía
@@ -197,28 +275,9 @@ export default function NeuropathyTest() {
               información.
             </p>
             <div className="mt-6 space-y-6">
-              <div className="space-y-4 md:hidden">
-                <div className="flex items-center justify-between text-xs text-emerald-50/70">
-                  <span>
-                    Pregunta {currentIndex + 1} de {QUESTIONS.length}
-                  </span>
-                  <span>
-                    Progreso {answeredCount}/{QUESTIONS.length}
-                  </span>
-                </div>
-                <div className="h-1.5 w-full overflow-hidden rounded-full bg-emerald-900/40">
-                  <div
-                    className="h-full rounded-full bg-emerald-300/80 transition-all duration-300 ease-in-out"
-                    style={{
-                      width: `${((currentIndex + 1) / QUESTIONS.length) * 100}%`,
-                    }}
-                  />
-                </div>
-                {renderQuestionCard(QUESTIONS[currentIndex], currentIndex)}
-              </div>
-              <div className="hidden space-y-5 md:block">
+              <div className="space-y-5">
                 {QUESTIONS.map((question, index) =>
-                  renderQuestionCard(question, index)
+                  renderQuestionCard(question, index, answers, handleAnswer)
                 )}
               </div>
             </div>
