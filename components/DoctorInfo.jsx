@@ -33,25 +33,36 @@ function DoctorHighlightsList() {
   );
 }
 
-function ConsultationDetails({ tone = "dark" }) {
+function ConsultationDetails({ tone = "dark", compact = false }) {
   const isDark = tone === "dark";
+  const wrapperClass = compact ? "space-y-4" : "space-y-5";
+  const headingSize = compact ? "text-xl sm:text-2xl" : "text-2xl";
   const headingClass = isDark ? "text-emerald-50" : "text-emerald-900";
-  const bodyClass = isDark ? "text-emerald-50/80" : "text-emerald-900/80";
+  const bodyClass = isDark
+    ? compact
+      ? "text-sm text-emerald-50/80 sm:text-base"
+      : "text-base text-emerald-50/80 sm:text-lg"
+    : compact
+      ? "text-sm text-emerald-900/80 sm:text-base"
+      : "text-base text-emerald-900/80 sm:text-lg";
   const mapButtonClass = isDark
-    ? "w-fit rounded-xl border-emerald-100 text-emerald-50 hover:bg-emerald-800"
-    : "w-fit rounded-xl border-emerald-100 text-emerald-900 hover:bg-emerald-50";
+    ? "w-full rounded-xl border-emerald-100 text-emerald-50 hover:bg-emerald-800 sm:w-fit"
+    : "w-full rounded-xl border-emerald-100 text-emerald-900 hover:bg-emerald-50 sm:w-fit";
+  const locationCardPadding = compact ? "p-4" : "p-5";
+  const mapHeightClass = compact ? "h-[160px] sm:h-[200px]" : "h-[200px] sm:h-[220px]";
+  const ctaButtonClass = compact ? "w-full sm:w-fit" : "w-fit";
 
   return (
-    <div className="space-y-5">
-      <h3 className={`text-2xl font-semibold ${headingClass}`}>
+    <div className={wrapperClass}>
+      <h3 className={`${headingSize} font-semibold ${headingClass}`}>
         INFORMACION DE LA CONSULTA
       </h3>
-      <p className={`text-base ${bodyClass} sm:text-lg`}>
+      <p className={bodyClass}>
         Evaluamos tus síntomas, realizamos pruebas clínicas de sensibilidad
         y brindamos recomendaciones claras para mejorar tu calidad de vida.
       </p>
       <Card className="bg-emerald-50/95">
-        <CardContent className="p-5">
+        <CardContent className={locationCardPadding}>
           <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
             Ubicación
           </p>
@@ -64,7 +75,9 @@ function ConsultationDetails({ tone = "dark" }) {
         </CardContent>
       </Card>
       <a href={mapHref} target="_blank" rel="noopener noreferrer" className="block">
-        <div className="relative h-[200px] w-full overflow-hidden rounded-xl border border-emerald-100/80 bg-white sm:h-[220px]">
+        <div
+          className={`relative w-full overflow-hidden rounded-xl border border-emerald-100/80 bg-white ${mapHeightClass}`}
+        >
           <iframe
             src={mapEmbedSrc}
             width="100%"
@@ -84,7 +97,7 @@ function ConsultationDetails({ tone = "dark" }) {
       </Button>
       <Button
         size="lg"
-        className="w-fit rounded-full bg-emerald-500 text-white shadow-soft hover:bg-emerald-600"
+        className={`${ctaButtonClass} rounded-full bg-emerald-500 text-white shadow-soft hover:bg-emerald-600`}
         asChild
       >
         <WhatsAppLink
@@ -104,7 +117,7 @@ export default function DoctorInfo() {
   return (
     <section id="medico" className="section">
       <div className="rounded-3xl bg-teal-900/95 px-6 py-12 shadow-sm sm:px-10">
-        <div className="md:hidden">
+        <div className="space-y-6 md:hidden">
           <Card className="bg-white/95 shadow-lg ring-1 ring-black/5">
             <CardContent className="space-y-6 p-6">
               <div className="flex items-center gap-4">
@@ -145,13 +158,15 @@ export default function DoctorInfo() {
                     Ver perfil profesional
                   </AccordionTrigger>
                   <AccordionContent className="pt-2">
-                    <div className="space-y-6">
-                      <DoctorHighlightsList />
-                      <ConsultationDetails tone="light" />
-                    </div>
+                    <DoctorHighlightsList />
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
+            </CardContent>
+          </Card>
+          <Card className="bg-white/95 shadow-lg ring-1 ring-black/5">
+            <CardContent className="p-6">
+              <ConsultationDetails tone="light" compact />
             </CardContent>
           </Card>
         </div>
