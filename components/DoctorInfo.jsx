@@ -33,7 +33,7 @@ function DoctorHighlightsList() {
   );
 }
 
-function ConsultationDetails({ tone = "dark", compact = false }) {
+function ConsultationDetails({ tone = "dark", compact = false, showCta = true }) {
   const isDark = tone === "dark";
   const wrapperClass = compact ? "space-y-4" : "space-y-5";
   const headingSize = compact ? "text-xl sm:text-2xl" : "text-2xl";
@@ -95,21 +95,23 @@ function ConsultationDetails({ tone = "dark", compact = false }) {
           📍 Cómo llegar al consultorio
         </a>
       </Button>
-      <Button
-        size="lg"
-        className={`${ctaButtonClass} rounded-full bg-emerald-500 text-white shadow-soft hover:bg-emerald-600`}
-        asChild
-      >
-        <WhatsAppLink
-          target="_blank"
-          rel="noreferrer"
-          location="doctor"
-          data-analytics-event="whatsapp_click"
-          data-analytics-label="doctor_cta"
+      {showCta && (
+        <Button
+          size="lg"
+          className={`${ctaButtonClass} rounded-full bg-emerald-500 text-white shadow-soft hover:bg-emerald-600`}
+          asChild
         >
-          Hablar con el médico
-        </WhatsAppLink>
-      </Button>
+          <WhatsAppLink
+            target="_blank"
+            rel="noreferrer"
+            location="doctor"
+            data-analytics-event="whatsapp_click"
+            data-analytics-label="doctor_cta"
+          >
+            Hablar con el médico
+          </WhatsAppLink>
+        </Button>
+      )}
     </div>
   );
 }
@@ -163,26 +165,11 @@ export default function DoctorInfo() {
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
-              <Button
-                size="lg"
-                className="w-full rounded-full bg-emerald-500 text-white shadow-soft hover:bg-emerald-600"
-                asChild
-              >
-                <WhatsAppLink
-                  target="_blank"
-                  rel="noreferrer"
-                  location="doctor"
-                  data-analytics-event="whatsapp_click"
-                  data-analytics-label="doctor_mobile_cta"
-                >
-                  Hablar con el médico
-                </WhatsAppLink>
-              </Button>
             </CardContent>
           </Card>
           <Card className="bg-white/95 shadow-lg ring-1 ring-black/5">
             <CardContent className="p-6">
-              <ConsultationDetails tone="light" compact />
+            <ConsultationDetails tone="light" compact showCta={false} />
             </CardContent>
           </Card>
         </div>

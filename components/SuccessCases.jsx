@@ -72,21 +72,6 @@ export default function SuccessCases() {
               </p>
             </CardContent>
           </Card>
-          <Button
-            size="lg"
-            className="w-full rounded-full bg-teal-700 text-white hover:bg-teal-600"
-            asChild
-          >
-            <WhatsAppLink
-              target="_blank"
-              rel="noreferrer"
-              location="doctor"
-              data-analytics-event="whatsapp_click"
-              data-analytics-label="stories_cta"
-            >
-              Hablar con el médico por WhatsApp
-            </WhatsAppLink>
-          </Button>
         </div>
 
         <div className="hidden space-y-2 md:block">

@@ -192,6 +192,9 @@ export default function NeuropathyTest() {
           <h2 className="text-3xl font-semibold text-emerald-50">
             Test rápido de neuropatía
           </h2>
+          <p className="text-sm font-semibold text-emerald-50/90">
+            Responde 5 preguntas y mira tu resultado orientativo
+          </p>
           <p className="text-base text-emerald-50/80">
             Responde con sí o no. No guardamos tus respuestas ni compartimos
             información.
@@ -265,7 +268,7 @@ export default function NeuropathyTest() {
                     data-analytics-event="whatsapp_click"
                     data-analytics-label="test_share_mobile"
                   >
-                    {displayInfo.cta}
+                    Hablar con el médico por WhatsApp
                   </WhatsAppLink>
                 </Button>
               )}

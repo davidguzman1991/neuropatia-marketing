@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
@@ -5,6 +7,21 @@ import { Card, CardContent } from "./ui/card";
 import WhatsAppLink from "./WhatsAppLink";
 
 export default function Hero() {
+  const scrollToSection = (ids) => {
+    if (typeof document === "undefined") {
+      return;
+    }
+
+    const targets = Array.isArray(ids) ? ids : [ids];
+    for (const id of targets) {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+        break;
+      }
+    }
+  };
+
   return (
     <section id="inicio" className="section">
       <div className="rounded-3xl bg-[radial-gradient(900px_circle_at_15%_0%,rgba(255,255,255,0.12),transparent_45%),linear-gradient(135deg,#0b3f3d_0%,#0f4f4a_48%,#0a3a39_100%)] p-8 shadow-sm ring-1 ring-emerald-900/30 sm:p-10">
@@ -21,21 +38,18 @@ export default function Hero() {
           <Button
             size="lg"
             className="w-full rounded-full bg-emerald-400 text-emerald-950 shadow-soft hover:bg-emerald-300"
-            asChild
+            type="button"
+            onClick={() => scrollToSection("test")}
           >
-            <WhatsAppLink
-              target="_blank"
-              rel="noreferrer"
-              location="hero"
-              data-analytics-event="whatsapp_click"
-              data-analytics-label="hero_cta"
-            >
-              Agendar por WhatsApp
-            </WhatsAppLink>
+            Hacer test gratuito (1 minuto)
           </Button>
-          <a href="#sintomas" className="text-sm font-semibold text-emerald-50/80 underline">
-            Ver síntomas
-          </a>
+          <button
+            type="button"
+            onClick={() => scrollToSection(["precio", "precios", "ubicacion"])}
+            className="text-left text-sm font-semibold text-emerald-50/80 underline"
+          >
+            Ver precio y ubicación
+          </button>
           <div className="overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-soft">
             <Image
               src="/hero/neuropatia-hero-medico.webp"
