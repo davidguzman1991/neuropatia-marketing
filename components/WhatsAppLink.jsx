@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { trackWhatsAppClick } from "../lib/analytics";
 import { WHATSAPP_MESSAGE, WHATSAPP_NUMBER } from "../lib/constants";
