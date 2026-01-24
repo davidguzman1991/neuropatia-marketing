@@ -141,12 +141,12 @@ export default function NeuropathyTest() {
     const isNoSelected = activeAnswers[index] === false;
 
     return (
-      <Card key={question} className="border border-emerald-100/80 bg-emerald-50/95">
-        <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="min-w-0 text-base text-emerald-900/90 break-words sm:flex-1">
+      <Card key={question} className="w-full min-w-0 border-2 border-emerald-200/70 bg-white/95 shadow-mobile-card sm:border-emerald-100/80 sm:bg-emerald-50/95">
+        <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+          <p className="min-w-0 flex-1 break-words text-sm font-medium text-emerald-900/90 sm:text-base">
             {question}
           </p>
-          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+          <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row">
             <Button
               type="button"
               variant="outline"
@@ -154,7 +154,7 @@ export default function NeuropathyTest() {
               onClick={() => onAnswer(index, true)}
               data-analytics-event="test_interaction"
               data-analytics-label={`answer_yes_${index + 1}`}
-              className={`w-full rounded-full border-2 sm:w-auto ${
+              className={`min-h-[44px] w-full rounded-xl border-2 sm:min-h-0 sm:w-auto sm:rounded-full ${
                 isYesSelected
                   ? "border-emerald-600 bg-emerald-600 text-white ring-2 ring-emerald-200"
                   : "border-emerald-300 text-emerald-700 hover:bg-emerald-50"
@@ -170,7 +170,7 @@ export default function NeuropathyTest() {
               onClick={() => onAnswer(index, false)}
               data-analytics-event="test_interaction"
               data-analytics-label={`answer_no_${index + 1}`}
-              className={`w-full rounded-full border-2 sm:w-auto ${
+              className={`min-h-[44px] w-full rounded-xl border-2 sm:min-h-0 sm:w-auto sm:rounded-full ${
                 isNoSelected
                   ? "border-rose-500 bg-rose-500 text-white ring-2 ring-rose-200"
                   : "border-rose-300 text-rose-600 hover:bg-rose-50"
@@ -187,30 +187,27 @@ export default function NeuropathyTest() {
 
   return (
     <section id="test" className="section">
-      <div className="rounded-3xl bg-emerald-800/95 p-6 shadow-soft sm:p-8">
-        <div className="space-y-6 md:hidden">
-          <h2 className="text-3xl font-semibold text-emerald-50">
-            Test rápido de neuropatía
-          </h2>
-          <p className="text-sm font-semibold text-emerald-50/90">
-            Responde 5 preguntas y mira tu resultado orientativo
-          </p>
-          <p className="text-base text-emerald-50/80">
-            Responde con sí o no. No guardamos tus respuestas ni compartimos
-            información.
-          </p>
+      <div className="min-w-0 rounded-2xl bg-[linear-gradient(145deg,#064e3b_0%,#065f46_45%,#047857_100%)] p-4 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.1)] ring-2 ring-emerald-900/40 sm:rounded-3xl sm:p-6 md:p-8">
+        <div className="space-y-5 md:hidden">
+          <div className="min-w-0 space-y-1">
+            <h2 className="text-2xl font-bold text-emerald-50 sm:text-3xl">
+              Test rápido de neuropatía
+            </h2>
+            <p className="text-sm font-semibold text-emerald-100/90">
+              Responde 5 preguntas y mira tu resultado orientativo
+            </p>
+            <p className="text-sm text-emerald-100/85">
+              Responde con sí o no. No guardamos tus respuestas ni compartimos información.
+            </p>
+          </div>
           <div className="space-y-4">
-            <div className="flex items-center justify-between text-xs text-emerald-50/70">
-              <span>
-                Pregunta {currentIndex + 1} de {QUESTIONS.length}
-              </span>
-              <span>
-                Progreso {answeredCount}/{QUESTIONS.length}
-              </span>
+            <div className="flex min-w-0 items-center justify-between gap-2 text-xs font-medium text-emerald-100/80">
+              <span>Pregunta {currentIndex + 1} de {QUESTIONS.length}</span>
+              <span>Progreso {answeredCount}/{QUESTIONS.length}</span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-emerald-900/40">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-emerald-900/50 shadow-inner">
               <div
-                className="h-full rounded-full bg-emerald-300/80 transition-all duration-300 ease-in-out"
+                className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-emerald-300 transition-all duration-300 ease-out"
                 style={{
                   width: `${((currentIndex + 1) / QUESTIONS.length) * 100}%`,
                 }}
@@ -223,20 +220,20 @@ export default function NeuropathyTest() {
               handleAnswer
             )}
           </div>
-          <Card className="bg-emerald-50/95">
-            <CardContent className="p-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+          <Card className="w-full min-w-0 border-2 border-emerald-200/70 bg-white/95 shadow-mobile-card">
+            <CardContent className="p-4 sm:p-5">
+              <p className="text-xs font-bold uppercase tracking-wide text-emerald-700">
                 Resultado orientativo
               </p>
               <Badge
-                className={`mt-3 w-full justify-center rounded-2xl border-2 px-4 py-2 text-base font-semibold ${displayInfo.badgeClass}`}
+                className={`mt-3 w-full justify-center rounded-xl border-2 px-4 py-2.5 text-sm font-bold sm:text-base ${displayInfo.badgeClass}`}
               >
                 {displayInfo.badge}
               </Badge>
-              <h3 className="mt-3 text-lg font-semibold text-emerald-900">
+              <h3 className="mt-3 text-base font-bold text-emerald-900 sm:text-lg">
                 {displayInfo.title}
               </h3>
-              <p className="mt-2 text-sm text-emerald-900/80">
+              <p className="mt-2 min-w-0 break-words text-sm leading-relaxed text-emerald-900/85">
                 {displayInfo.message}
               </p>
               {!isPending && (
@@ -248,7 +245,7 @@ export default function NeuropathyTest() {
                 <Button
                   type="button"
                   size="lg"
-                  className="mt-5 w-full rounded-full bg-emerald-100 text-emerald-700/60 hover:bg-emerald-100"
+                  className="mt-5 min-h-[48px] w-full rounded-xl bg-slate-200 text-slate-600"
                   disabled
                 >
                   {displayInfo.cta}
@@ -257,7 +254,7 @@ export default function NeuropathyTest() {
                 <Button
                   type="button"
                   size="lg"
-                  className="mt-5 w-full rounded-full bg-emerald-600 text-white hover:bg-emerald-700"
+                  className="btn-metallic mt-5 min-h-[48px] w-full rounded-xl py-4 text-base font-bold text-white"
                   asChild
                 >
                   <WhatsAppLink
@@ -275,8 +272,8 @@ export default function NeuropathyTest() {
               <p className="mt-3 text-xs text-emerald-900/70">
                 La neuropatía diabética puede ser silenciosa en etapas iniciales.
               </p>
-              <p className="mt-4 text-xs text-emerald-900/70">
-                Preguntas respondidas: {answeredCount}/{QUESTIONS.length}
+              <p className="mt-3 text-xs font-medium text-emerald-900/75">
+                Preguntas: {answeredCount}/{QUESTIONS.length}
               </p>
             </CardContent>
           </Card>
@@ -299,8 +296,8 @@ export default function NeuropathyTest() {
               </div>
             </div>
           </div>
-          <Card className="min-w-0 bg-emerald-50/90">
-            <CardContent className="p-6">
+          <Card className="min-w-0 border-emerald-100/80 bg-emerald-50/90">
+            <CardContent className="p-5 sm:p-6">
               <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
                 Resultado orientativo
               </p>

@@ -37,7 +37,7 @@ export default function HomePageLayout() {
 
   if (isMobile) {
     return (
-      <div className="flex flex-col">
+      <div className="flex min-w-0 flex-col">
         <Hero />
         <NeuropathyTest />
         <Symptoms />
@@ -53,7 +53,7 @@ export default function HomePageLayout() {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex min-w-0 flex-col">
       <Hero />
       <div className="py-8 sm:py-10">
         <Separator />

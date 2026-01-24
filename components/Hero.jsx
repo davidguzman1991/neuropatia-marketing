@@ -24,39 +24,41 @@ export default function Hero() {
 
   return (
     <section id="inicio" className="section">
-      <div className="rounded-3xl bg-[radial-gradient(900px_circle_at_15%_0%,rgba(255,255,255,0.12),transparent_45%),linear-gradient(135deg,#0b3f3d_0%,#0f4f4a_48%,#0a3a39_100%)] p-8 shadow-sm ring-1 ring-emerald-900/30 sm:p-10">
-        <div className="space-y-5 md:hidden">
-          <Badge className="gap-2 rounded-full border border-emerald-200/40 bg-white/10 px-4 py-2 text-xs font-semibold text-emerald-50">
-            NEUROPATIA DIABETICA
+      <div className="rounded-2xl sm:rounded-3xl bg-[linear-gradient(145deg,#042f2e_0%,#064e3b_35%,#065f46_60%,#047857_100%)] p-5 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)] ring-2 ring-emerald-900/40 sm:p-10 md:bg-[radial-gradient(900px_circle_at_15%_0%,rgba(255,255,255,0.12),transparent_45%),linear-gradient(135deg,#0b3f3d_0%,#0f4f4a_48%,#0a3a39_100%)] md:ring-1 md:ring-emerald-900/30">
+        <div className="flex min-w-0 flex-col gap-5 md:hidden">
+          <Badge className="w-fit gap-2 rounded-full border-2 border-emerald-300/50 bg-white/15 px-4 py-2 text-[11px] font-bold uppercase tracking-wide text-emerald-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
+            NEUROPATÍA DIABÉTICA
           </Badge>
-          <h1 className="text-3xl font-semibold text-emerald-50">
+          <h1 className="text-2xl font-bold leading-tight text-emerald-50 sm:text-3xl">
             Dolor, ardor u hormigueo en los pies no es normal.
           </h1>
-          <p className="text-sm text-emerald-50/80">
+          <p className="text-sm leading-relaxed text-emerald-100/90">
             Evaluamos neuropatía diabética con enfoque preventivo para aliviar el dolor y evitar complicaciones.
           </p>
-          <Button
-            size="lg"
-            className="w-full rounded-full bg-emerald-400 text-emerald-950 shadow-soft hover:bg-emerald-300"
-            type="button"
-            onClick={() => scrollToSection("test")}
-          >
-            Hacer test gratuito (1 minuto)
-          </Button>
-          <button
-            type="button"
-            onClick={() => scrollToSection(["precio", "precios", "ubicacion"])}
-            className="text-left text-sm font-semibold text-emerald-50/80 underline"
-          >
-            Ver precio y ubicación
-          </button>
-          <div className="overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-soft">
+          <div className="flex flex-col gap-3">
+            <Button
+              size="lg"
+              className="btn-metallic w-full rounded-xl py-4 text-base font-bold text-white transition active:scale-[0.98]"
+              type="button"
+              onClick={() => scrollToSection("test")}
+            >
+              Hacer test gratuito (1 minuto)
+            </Button>
+            <button
+              type="button"
+              onClick={() => scrollToSection(["precio", "precios", "ubicacion"])}
+              className="min-h-[44px] rounded-xl border-2 border-emerald-300/40 bg-white/10 px-4 py-3 text-left text-sm font-semibold text-emerald-50 underline decoration-emerald-300/60 underline-offset-2 active:bg-white/20"
+            >
+              Ver precio y ubicación
+            </button>
+          </div>
+          <div className="min-w-0 overflow-hidden rounded-xl ring-2 ring-white/20 shadow-mobile-card">
             <Image
               src="/hero/neuropatia-hero-medico.webp"
               alt="Evaluación médica de neuropatía diabética"
               width={900}
               height={1200}
-              className="h-44 w-full object-cover object-center"
+              className="h-48 w-full object-cover object-center sm:h-52"
             />
           </div>
         </div>
@@ -121,8 +123,8 @@ export default function Hero() {
           </div>
           <div className="space-y-6 lg:col-span-2">
             <a href="#precios" className="block">
-              <Card className="border-emerald-100/80 bg-white/95">
-                <CardContent className="p-6">
+              <Card className="border-emerald-100/80 bg-white/95 sm:border">
+                <CardContent className="p-5 sm:p-6">
                   <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
                     Prioridad en agenda
                   </p>

@@ -31,49 +31,48 @@ export default function Complications() {
 
   return (
     <section id="complicaciones" className="section">
-      <div className="space-y-6 rounded-3xl border border-emerald-100/80 bg-white/95 p-6 shadow-sm sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
-        <div className="max-w-3xl space-y-3">
-          <h2 className="text-3xl font-semibold text-emerald-900 sm:text-4xl">
+      <div className="min-w-0 space-y-5 sm:space-y-6">
+        <div className="max-w-3xl space-y-2 sm:space-y-3">
+          <h2 className="text-2xl font-bold text-emerald-900 sm:text-3xl md:text-4xl">
             Complicaciones que podemos prevenir
           </h2>
-          <p className="text-base text-emerald-900/80 sm:text-lg">
+          <p className="text-sm leading-relaxed text-emerald-900/85 sm:text-base md:text-lg">
             La neuropatía diabética requiere un enfoque preventivo. Una
             evaluación oportuna puede evitar consecuencias severas en la calidad
             de vida.
           </p>
         </div>
-        <div className="space-y-2">
-          <div className="flex items-center justify-end text-xs font-semibold text-emerald-700/60 md:hidden">
-            Desliza &gt;
-          </div>
-          <div className="relative">
-            <div className="flex gap-4 overflow-x-auto -mx-6 px-6 pb-4 snap-x snap-mandatory scroll-px-6 sm:mx-0 sm:px-0 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 md:snap-none">
+        <div className="space-y-3 sm:space-y-4">
+          <p className="flex items-center justify-end gap-1 text-xs font-semibold text-emerald-700/70 md:hidden">
+            <span className="inline-block animate-pulse">←</span> Desliza
+          </p>
+          <div className="relative -mx-4 sm:mx-0 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible">
+            <div className="flex gap-4 overflow-x-auto px-4 pb-2 snap-x snap-mandatory scroll-smooth sm:px-0 md:grid md:grid-cols-2 md:overflow-visible md:snap-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {items.map((item) => (
                 <Card
                   key={item.title}
-                  className="min-w-[72%] max-w-[320px] shrink-0 snap-center bg-white/90 sm:min-w-[60%] md:min-w-0 md:max-w-none md:snap-none"
+                  className="w-[85%] min-w-[280px] max-w-[340px] shrink-0 snap-center border-emerald-200/70 bg-white/95 sm:w-[75%] md:w-full md:min-w-0 md:max-w-none md:snap-none"
                 >
-                  <CardContent className="p-5 sm:p-6">
-                    <div className="overflow-hidden rounded-xl">
+                  <CardContent className="flex min-h-0 flex-col p-4 sm:p-5 md:p-6">
+                    <div className="min-h-0 overflow-hidden rounded-xl">
                       <Image
                         src={item.image}
                         alt={item.title}
                         width={640}
                         height={420}
-                        className="mb-4 h-32 w-full max-h-40 rounded-xl object-cover object-center bg-emerald-50/60 sm:h-40 sm:max-h-48"
+                        className="mb-3 h-28 w-full rounded-xl object-cover object-center bg-slate-100 sm:mb-4 sm:h-36 md:h-40"
                       />
                     </div>
-                    <h3 className="text-xl font-semibold text-emerald-900">
+                    <h3 className="text-lg font-bold text-emerald-900 sm:text-xl">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-base text-emerald-900/80">
+                    <p className="mt-2 min-w-0 flex-1 break-words text-sm text-emerald-900/85 sm:text-base">
                       {item.description}
                     </p>
                   </CardContent>
                 </Card>
               ))}
             </div>
-            <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-white to-transparent md:hidden" />
           </div>
         </div>
       </div>

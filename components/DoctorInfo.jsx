@@ -49,7 +49,7 @@ function ConsultationDetails({ tone = "dark", compact = false, showCta = true })
     ? "w-full rounded-xl border-emerald-100 text-emerald-50 hover:bg-emerald-800 sm:w-fit"
     : "w-full rounded-xl border-emerald-100 text-emerald-900 hover:bg-emerald-50 sm:w-fit";
   const locationCardPadding = compact ? "p-4" : "p-5";
-  const mapHeightClass = compact ? "h-[160px] sm:h-[200px]" : "h-[200px] sm:h-[220px]";
+  const mapHeightClass = compact ? "h-[140px] sm:h-[180px] md:h-[200px]" : "h-[200px] sm:h-[220px]";
   const ctaButtonClass = compact ? "w-full sm:w-fit" : "w-fit";
 
   return (
@@ -119,59 +119,76 @@ function ConsultationDetails({ tone = "dark", compact = false, showCta = true })
 export default function DoctorInfo() {
   return (
     <section id="medico" className="section">
-      <div className="rounded-3xl bg-teal-900/95 px-6 py-12 shadow-sm sm:px-10">
-        <div className="space-y-6 md:hidden">
-          <Card className="bg-white/95 shadow-lg ring-1 ring-black/5">
-            <CardContent className="space-y-6 p-6">
-              <div className="flex items-center gap-4">
-                <div className="h-20 w-20 max-h-24 max-w-24 overflow-hidden rounded-full ring-1 ring-emerald-100/80">
+      <div className="min-w-0 rounded-2xl bg-[linear-gradient(145deg,#0f766e_0%,#0d5c56_40%,#134e4a_100%)] px-4 py-8 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] ring-2 ring-teal-900/40 sm:rounded-3xl sm:px-6 sm:py-10 md:px-10 md:py-12 md:bg-teal-900/95 md:ring md:ring-black/10">
+        <div className="space-y-4 md:hidden sm:space-y-5">
+          <Card className="w-full min-w-0 border-2 border-slate-200/80 bg-white shadow-mobile-card sm:border-emerald-100/80">
+            <CardContent className="space-y-5 p-4 sm:p-5">
+              <div className="flex min-w-0 items-start gap-4">
+                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-emerald-200/80 sm:h-20 sm:w-20">
                   <Image
                     src="/doctor/dr-david-guzman.webp"
                     alt="Dr. David Guzmán"
                     width={200}
                     height={240}
-                    className="h-full w-full max-h-24 object-cover object-top"
+                    className="h-16 w-16 object-cover object-top sm:h-20 sm:w-20"
                   />
                 </div>
-                <div className="space-y-1">
-                  <Badge className="rounded-full border border-emerald-100/70 bg-emerald-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
+                <div className="min-w-0 flex-1 space-y-1">
+                  <Badge className="w-fit rounded-full border-2 border-emerald-200/70 bg-emerald-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-emerald-700">
                     MÉDICO ESPECIALISTA
                   </Badge>
-                  <h2 className="text-2xl font-semibold tracking-tight text-emerald-900">
+                  <h2 className="text-xl font-bold tracking-tight text-emerald-900 sm:text-2xl">
                     Dr. David Guzmán P.
                   </h2>
-                  <p className="text-xs font-semibold text-emerald-700/80">
+                  <p className="text-xs font-semibold text-emerald-700/90">
                     Atención centrada en el alivio del dolor neuropático
                   </p>
-                  <p className="text-sm text-emerald-900/70">
+                  <p className="text-sm text-emerald-900/80">
                     Endocrinología clínica - Especialista en Diabetes
                   </p>
                 </div>
               </div>
-              <p className="text-sm text-emerald-900/70">
+              <p className="min-w-0 break-words text-sm text-emerald-900/80">
                 Protocolos actualizados de manejo del dolor neuropático.
               </p>
               <Accordion
                 type="single"
                 collapsible
-                className="rounded-xl border border-emerald-100/80 px-4"
+                className="min-w-0 rounded-xl border-2 border-emerald-200/70 bg-emerald-50/50 px-4 shadow-inner"
               >
-                <AccordionItem value="perfil" className="border-emerald-100/80">
-                  <AccordionTrigger className="text-emerald-900">
+                <AccordionItem value="perfil" className="border-emerald-200/60">
+                  <AccordionTrigger className="text-left text-emerald-900 font-semibold">
                     Ver perfil profesional
                   </AccordionTrigger>
-                  <AccordionContent className="pt-2">
+                  <AccordionContent className="pt-2 pb-3">
                     <DoctorHighlightsList />
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
             </CardContent>
           </Card>
-          <Card className="bg-white/95 shadow-lg ring-1 ring-black/5">
-            <CardContent className="p-6">
-            <ConsultationDetails tone="light" compact showCta={false} />
+          <Card className="w-full min-w-0 border-2 border-slate-200/80 bg-white shadow-mobile-card sm:border-emerald-100/80">
+            <CardContent className="min-w-0 p-4 sm:p-5">
+              <ConsultationDetails tone="light" compact showCta={false} />
             </CardContent>
           </Card>
+          <div className="pt-2">
+            <Button
+              size="lg"
+              className="btn-metallic w-full rounded-xl py-4 text-base font-bold text-white"
+              asChild
+            >
+              <WhatsAppLink
+                target="_blank"
+                rel="noreferrer"
+                location="doctor"
+                data-analytics-event="whatsapp_click"
+                data-analytics-label="doctor_cta"
+              >
+                Hablar con el médico
+              </WhatsAppLink>
+            </Button>
+          </div>
         </div>
         <div className="hidden md:block">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">

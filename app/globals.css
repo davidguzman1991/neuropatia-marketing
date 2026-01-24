@@ -11,6 +11,14 @@
   --color-coral: 217 119 74;
   --color-sky: 228 237 245;
   --color-cloud: 255 255 255;
+  /* Metálico / intenso */
+  --metal-dark: 30 41 59;
+  --metal-mid: 71 85 105;
+  --metal-light: 148 163 184;
+  --metal-shine: 226 232 240;
+  --emerald-deep: 4 47 46;
+  --emerald-intense: 5 150 105;
+  --teal-deep: 19 78 74;
 }
 
 *,
@@ -19,10 +27,16 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   font-family: var(--font-sans);
   line-height: 1.7;
   letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -44,10 +58,6 @@ h3 {
   }
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 .page-bg {
   background:
     radial-gradient(900px circle at 10% 10%, #ffffff 0%, transparent 60%),
@@ -55,8 +65,48 @@ html {
     linear-gradient(180deg, #f7f2ea 0%, #f7f2ea 100%);
 }
 
+@media (max-width: 767px) {
+  .page-bg {
+    background:
+      radial-gradient(600px circle at 50% 0%, rgba(226, 232, 240, 0.5) 0%, transparent 50%),
+      radial-gradient(400px circle at 0% 80%, rgba(148, 163, 184, 0.25) 0%, transparent 40%),
+      linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 40%, #94a3b8 100%);
+  }
+}
+
 @layer components {
   .section {
-    @apply py-12 sm:py-16;
+    @apply py-10 sm:py-16;
+  }
+
+  .card-mobile {
+    @apply w-full min-w-0 overflow-hidden rounded-2xl border-2 border-slate-300/80 bg-white shadow-[0_4px_20px_-4px_rgba(30,41,59,0.25),inset_0_1px_0_rgba(255,255,255,0.8)];
+  }
+
+  .card-metallic {
+    background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
+    box-shadow:
+      0 4px 24px -6px rgba(30, 41, 59, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 1px 2px rgba(30, 41, 59, 0.08);
+    border: 1px solid rgba(148, 163, 184, 0.5);
+  }
+
+  .card-metallic-dark {
+    background: linear-gradient(145deg, #0f766e 0%, #0d5c56 40%, #134e4a 100%);
+    box-shadow:
+      0 4px 24px -6px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .btn-metallic {
+    background: linear-gradient(180deg, #059669 0%, #047857 50%, #065f46 100%) !important;
+    box-shadow:
+      0 4px 14px -2px rgba(5, 150, 105, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #fff !important;
   }
 }

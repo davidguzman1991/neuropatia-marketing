@@ -12,6 +12,12 @@ module.exports = {
         coral: "rgb(var(--color-coral) / <alpha-value>)",
         sky: "rgb(var(--color-sky) / <alpha-value>)",
         cloud: "rgb(var(--color-cloud) / <alpha-value>)",
+        "metal-dark": "rgb(var(--metal-dark) / <alpha-value>)",
+        "metal-mid": "rgb(var(--metal-mid) / <alpha-value>)",
+        "metal-light": "rgb(var(--metal-light) / <alpha-value>)",
+        "emerald-deep": "rgb(var(--emerald-deep) / <alpha-value>)",
+        "emerald-intense": "rgb(var(--emerald-intense) / <alpha-value>)",
+        "teal-deep": "rgb(var(--teal-deep) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
@@ -19,6 +25,16 @@ module.exports = {
       },
       boxShadow: {
         soft: "0 20px 60px -40px rgba(0, 0, 0, 0.35)",
+        metallic:
+          "0 4px 24px -6px rgba(30, 41, 59, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+        "metallic-dark":
+          "0 4px 24px -6px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12)",
+        "mobile-card":
+          "0 4px 20px -4px rgba(30, 41, 59, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+      },
+      spacing: {
+        "safe-bottom": "env(safe-area-inset-bottom, 0px)",
+        "safe-top": "env(safe-area-inset-top, 0px)",
       },
       keyframes: {
         "accordion-down": {

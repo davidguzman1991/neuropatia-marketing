@@ -4,8 +4,8 @@ import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function HomePage() {
   return (
-    <div className="page-bg min-h-screen">
-      <main className="mx-auto max-w-7xl px-4 sm:px-6">
+    <div className="page-bg min-h-screen overflow-x-hidden">
+      <main className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8">
         <HomePageLayout />
       </main>
       <Footer />
